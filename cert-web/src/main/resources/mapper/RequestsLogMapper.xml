@@ -14,7 +14,7 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,request_id,action,
+        id,request_id,`action`,
         address,action_time,message
     </sql>
 </mapper>

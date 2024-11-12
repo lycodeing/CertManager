@@ -1,2 +1,24 @@
 server:
   port: 8080
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ssl_certificate?serverTimezone=Shanghai&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true
+    username: root
+    password: root
+
+mybatis-plus:
+  # 配置扫描 Mapper 类
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    # MyBatis 配置
+    map-underscore-to-camel-case: true
+  global-config:
+    # 全局配置
+    db-config:
+      # 数据库配置
+      id-type: auto
+    # 禁用 MyBatis-Plus 的 banner
+    banner: false
