@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
@@ -39,12 +40,17 @@ public class RequestsLog implements Serializable {
     /**
      * 操作时间
      */
-    private Date actionTime;
+    private LocalDateTime actionTime;
 
     /**
      * 操作的描述信息
      */
     private String message;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
