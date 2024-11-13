@@ -22,3 +22,8 @@ mybatis-plus:
       id-type: auto
     # 禁用 MyBatis-Plus 的 banner
     banner: false
+
+
+jwt:
+  secret: 123456
+  expiration-time: 30

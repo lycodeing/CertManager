@@ -10,4 +10,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface UsersService extends IService<Users> {
 
+    /**
+     * 登录
+     * @param username 用户名
+     * @param password 密码
+     * @return token
+     */
+    String login(String username, String password);
+
 }

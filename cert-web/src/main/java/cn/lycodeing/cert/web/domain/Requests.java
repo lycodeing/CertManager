@@ -68,11 +68,6 @@ public class Requests implements Serializable {
     private Object domainsList;
 
     /**
-     * 证书申请的状态，包括pendding、processing、completed、failed
-     */
-    private Integer status;
-
-    /**
      * 申请时间
      */
     private LocalDateTime createTime;
