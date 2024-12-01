@@ -2,6 +2,7 @@ package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
 import cn.lycodeing.cert.web.dto.request.RequestRequest;
+import cn.lycodeing.cert.web.exec.TaskExecutor;
 import cn.lycodeing.cert.web.service.RequestsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ public class RequestController {
     @PostMapping("/execute")
     public void execute() {
         // 执行相关操作
+        TaskExecutor executor = new TaskExecutor(null);
 
     }
 

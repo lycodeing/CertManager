@@ -4,10 +4,16 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * DNS提供商表
@@ -15,6 +21,9 @@ import lombok.Data;
  */
 @TableName(value ="cert_dns_providers")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class DnsProviders implements Serializable {
     /**
      * 
@@ -57,6 +66,7 @@ public class DnsProviders implements Serializable {
      */
     private LocalDateTime createTime;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }
