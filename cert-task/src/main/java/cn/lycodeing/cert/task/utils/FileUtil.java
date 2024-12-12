@@ -17,7 +17,8 @@ public class FileUtil {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String currentLine;
             while ((currentLine = br.readLine()) != null) {
-                contentBuilder.append(currentLine).append("\n"); // 保留换行符
+                // 保留换行符
+                contentBuilder.append(currentLine).append("\n");
             }
         }
         return contentBuilder.toString();

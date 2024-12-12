@@ -23,7 +23,8 @@ public class JwtUtil {
         return JWT.create()
                 .withIssuer(issuer)
                 .withSubject(String.valueOf(userId))
-                .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime * 1000L)) // 设置过期时间
+                // 设置过期时间
+                .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime * 1000L))
                 .sign(algorithm);
     }
 

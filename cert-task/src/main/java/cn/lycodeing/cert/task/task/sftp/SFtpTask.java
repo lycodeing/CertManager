@@ -60,7 +60,8 @@ public class SFtpTask implements Task {
 
     public void createDirectory(ChannelSftp sftpChannel, String fullRemotePath) throws SftpException {
         try {
-            sftpChannel.lstat(fullRemotePath); // 检查整个路径是否已存在
+            // 检查整个路径是否已存在
+            sftpChannel.lstat(fullRemotePath);
         } catch (SftpException e) {
             if (e.id == ChannelSftp.SSH_FX_NO_SUCH_FILE) {
                 // 整个路径不存在，需要逐级创建目录
@@ -79,13 +80,13 @@ public class SFtpTask implements Task {
                                 sftpChannel.mkdir(currentPath.toString());
                                 log.info("Directory created: {}", currentPath.toString());
                             } else {
-                                throw e1; // 抛出其他异常
+                                throw e1;
                             }
                         }
                     }
                 }
             } else {
-                throw e; // 处理其他异常
+                throw e;
             }
         }
     }

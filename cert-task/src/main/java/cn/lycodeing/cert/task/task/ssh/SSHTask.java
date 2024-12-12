@@ -23,10 +23,10 @@ public class SSHTask implements Task {
             JSch jsch = new JSch();
             // 创建Session实例
             Session session = jsch.getSession(sshContext.getUser(), sshContext.getHost(), sshContext.getPort());
-
             // 设置登录凭证
             session.setPassword(sshContext.getPassword());
-            session.setConfig("StrictHostKeyChecking", "no");  // 接受任何公钥
+            // 接受任何公钥
+            session.setConfig("StrictHostKeyChecking", "no");
 
             // 连接到远程主机
             session.connect();
@@ -67,7 +67,6 @@ public class SSHTask implements Task {
             channel.connect();
 
             // 输出执行结果
-            String result = "";
             StringBuilder sb = new StringBuilder();
             while (true) {
                 while (in.ready()) {
