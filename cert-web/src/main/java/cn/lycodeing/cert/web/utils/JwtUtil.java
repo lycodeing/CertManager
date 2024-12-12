@@ -7,10 +7,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * @author lycodeing
+ */
 @Component
 public class JwtUtil {
 
-    private static final String issuer = "lycodeing";
+    private static final String ISSUER = "lycodeing";
 
     @Value("${jwt.secret}")
     private String secret;
@@ -21,7 +24,7 @@ public class JwtUtil {
     public String createJwt(Integer userId) {
         Algorithm algorithm = Algorithm.HMAC256(secret);
         return JWT.create()
-                .withIssuer(issuer)
+                .withIssuer(ISSUER)
                 .withSubject(String.valueOf(userId))
                 // 设置过期时间
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime * 1000L))

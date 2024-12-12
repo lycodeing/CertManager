@@ -17,6 +17,9 @@ import java.util.Properties;
 
 import static cn.lycodeing.cert.task.constant.CommonConstant.*;
 
+/**
+ * @author lycodeing
+ */
 @Slf4j
 public class SFtpTask implements Task {
     @Override
@@ -45,10 +48,10 @@ public class SFtpTask implements Task {
     }
 
     @NotNull
-    private Session getSession(SFtpTaskData SFtpContext) throws JSchException {
+    private Session getSession(SFtpTaskData sFtpContext) throws JSchException {
         JSch jsch = new JSch();
-        Session session = jsch.getSession(SFtpContext.getUser(), SFtpContext.getHost(), SFtpContext.getPort());
-        session.setPassword(SFtpContext.getPassword());
+        Session session = jsch.getSession(sFtpContext.getUser(), sFtpContext.getHost(), sFtpContext.getPort());
+        session.setPassword(sFtpContext.getPassword());
         // 设置会话配置
         Properties config = new Properties();
         // 设置严格主机密钥检查为关闭
@@ -78,7 +81,7 @@ public class SFtpTask implements Task {
                             if (e1.id == ChannelSftp.SSH_FX_NO_SUCH_FILE) {
                                 // 当前目录不存在，需要创建
                                 sftpChannel.mkdir(currentPath.toString());
-                                log.info("Directory created: {}", currentPath.toString());
+                                log.info("Directory created: {}", currentPath);
                             } else {
                                 throw e1;
                             }
