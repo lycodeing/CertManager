@@ -2,9 +2,8 @@ package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
 import cn.lycodeing.cert.web.domain.DnsProviders;
-import cn.lycodeing.cert.web.dto.request.DnsProvidersRequest;
+import cn.lycodeing.cert.web.dto.request.DnsProvidersDTO;
 import cn.lycodeing.cert.web.service.DnsProvidersService;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,7 @@ import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
-@RequestMapping("/dns")
+@RequestMapping("/api/dns")
 public class DnsProvidersController {
 
     private final DnsProvidersService dnsProvidersService;
@@ -24,7 +23,7 @@ public class DnsProvidersController {
 
 
     @PostMapping
-    public R<Void> add(@RequestBody @Validated DnsProvidersRequest request) {
+    public R<Void> add(@RequestBody @Validated DnsProvidersDTO request) {
         log.info("添加DNS提供商: {}", request);
         dnsProvidersService.save(DnsProviders.builder()
                         .userId(123)
@@ -37,6 +36,9 @@ public class DnsProvidersController {
                 .build());
         return R.ok();
     }
+
+
+
 
 
     @DeleteMapping

@@ -1,11 +1,10 @@
 package cn.lycodeing.cert.web.service.impl;
 
-import cn.lycodeing.cert.web.dto.request.RequestRequest;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.lycodeing.cert.web.domain.Requests;
-import cn.lycodeing.cert.web.service.RequestsService;
+import cn.lycodeing.cert.web.dto.request.RequestDTO;
 import cn.lycodeing.cert.web.mapper.RequestsMapper;
-import org.apache.commons.lang3.StringUtils;
+import cn.lycodeing.cert.web.service.RequestsService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,7 +17,7 @@ public class RequestsServiceImpl extends ServiceImpl<RequestsMapper, Requests>
         implements RequestsService {
 
     @Override
-    public void createOrUpdate(RequestRequest request) {
+    public void createOrUpdate(RequestDTO request) {
         Requests requests = builderRequest(request);
         if (requests.getId() == null) {
             this.baseMapper.insert(requests);
@@ -27,7 +26,7 @@ public class RequestsServiceImpl extends ServiceImpl<RequestsMapper, Requests>
         }
     }
 
-    private Requests builderRequest(RequestRequest request) {
+    private Requests builderRequest(RequestDTO request) {
         Requests requests = new Requests();
         requests.setId(request.getId());
         requests.setDomain(request.getDomain());

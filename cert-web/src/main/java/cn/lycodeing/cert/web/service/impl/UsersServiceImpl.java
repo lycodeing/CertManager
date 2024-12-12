@@ -1,13 +1,13 @@
 package cn.lycodeing.cert.web.service.impl;
 
+import cn.lycodeing.cert.web.domain.Users;
+import cn.lycodeing.cert.web.mapper.UsersMapper;
+import cn.lycodeing.cert.web.service.UsersService;
 import cn.lycodeing.cert.web.utils.JwtUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.lycodeing.cert.web.domain.Users;
-import cn.lycodeing.cert.web.service.UsersService;
-import cn.lycodeing.cert.web.mapper.UsersMapper;
-import org.apache.commons.codec.digest.Md5Crypt;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -30,7 +30,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
         LambdaQueryWrapper<Users> wrapper = Wrappers.lambdaQuery(Users.class);
         wrapper.eq(Users::getUsername, username);
         Users users = this.baseMapper.selectOne(wrapper);
-        String md5Pwd = Md5Crypt.md5Crypt(password.getBytes());
+        if (users == null) {
+            throw new RuntimeException("用户不存在");
+        }
+        String md5Pwd = DigestUtils.md5Hex(password.getBytes());
         if (md5Pwd.equals(users.getPassword())) {
             return jwtUtil.createJwt(users.getUserId());
         }

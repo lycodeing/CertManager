@@ -1,6 +1,7 @@
 package cn.lycodeing.cert.web.service;
 
 import cn.lycodeing.cert.web.domain.PostProcessors;
+import cn.lycodeing.cert.web.dto.request.PostProcessorsDTO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -10,4 +11,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface PostProcessorsService extends IService<PostProcessors> {
 
+    void add(PostProcessorsDTO processorsDTO);
 }

@@ -1,7 +1,7 @@
 package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
-import cn.lycodeing.cert.web.dto.request.RequestRequest;
+import cn.lycodeing.cert.web.dto.request.RequestDTO;
 import cn.lycodeing.cert.web.exec.TaskExecutor;
 import cn.lycodeing.cert.web.service.RequestsService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +22,7 @@ public class RequestController {
 
 
     @PostMapping("/create")
-    public R<Void> create(@RequestBody RequestRequest request) {
+    public R<Void> create(@RequestBody RequestDTO request) {
         requestsService.createOrUpdate(request);
         return R.ok();
     }

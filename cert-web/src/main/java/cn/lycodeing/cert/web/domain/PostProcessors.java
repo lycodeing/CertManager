@@ -1,11 +1,10 @@
 package cn.lycodeing.cert.web.domain;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 后置处理器表
@@ -21,7 +20,7 @@ public class PostProcessors implements Serializable {
     private Integer id;
 
     /**
-     * 
+     * 用户id
      */
     private Integer userId;
 
@@ -45,6 +44,11 @@ public class PostProcessors implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
+
+    /**
+     * 参数json字符串
+     */
+    private String parametersJson;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

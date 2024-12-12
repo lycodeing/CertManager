@@ -145,7 +145,9 @@ public class CreateCertTask implements Task {
     }
 
     private Challenge checkAndTriggerChallenge(Authorization auth, String domain, String subDomainRR) throws Exception {
-        if (auth.getStatus() != Status.PENDING) return null;
+        if (auth.getStatus() != Status.PENDING) {
+            return null;
+        }
 
         Dns01Challenge challenge = auth.findChallenge(Dns01Challenge.TYPE).map(Dns01Challenge.class::cast).orElse(null);
         if (challenge == null) {

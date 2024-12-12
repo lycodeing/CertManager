@@ -1,7 +1,6 @@
 server:
   port: 8080
 
-
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,3 +26,14 @@ mybatis-plus:
 jwt:
   secret: 123456
   expiration-time: 30
+
+
+auth:
+  # 跳过认证的url
+  ignoreUrls:
+    - /api/user/login
+    - /api/user/register
+  # token 认证头
+  auth-header: Authorization
+  # token 认证前缀
+  token-prefix: Bearer

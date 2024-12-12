@@ -24,6 +24,10 @@ public class R<T> {
         return restResult(null, 500, msg);
     }
 
+    public static <T> R<T> failed(Integer code ,String msg) {
+        return restResult(null, code, msg);
+    }
+
     public static <T> R<T> failed(T data) {
         return restResult(data, 500, "failed");
     }

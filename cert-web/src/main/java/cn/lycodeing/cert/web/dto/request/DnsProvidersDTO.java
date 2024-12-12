@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Data
-public class DnsProvidersRequest {
+public class DnsProvidersDTO {
     private Integer id;
 
     /**
