@@ -12,6 +12,9 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
 
+/**
+ * @author lycodeing
+ */
 @Slf4j
 @Component
 public class AuthInterceptor implements HandlerInterceptor {

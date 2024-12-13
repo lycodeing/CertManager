@@ -122,10 +122,10 @@ public class CreateCertTask implements Task {
 
     private void authorize(Authorization auth, String domain) throws Exception {
 
-        String subDomainRR = getSubDomainRR(Dns01Challenge.RECORD_NAME_PREFIX, domain, auth.getIdentifier().getDomain());
-        log.info("Checking authorization for subDomainRR {}", subDomainRR);
+        String dnsRecord = createDnsRecordName(Dns01Challenge.RECORD_NAME_PREFIX, domain, auth.getIdentifier().getDomain());
+        log.info("Checking authorization for dnsRecord {}", dnsRecord);
         try {
-            Challenge challenge = checkAndTriggerChallenge(auth, domain, subDomainRR);
+            Challenge challenge = checkAndTriggerChallenge(auth, domain, dnsRecord);
             if (challenge == null || challenge.getStatus() != Status.VALID) {
                 String errorMsg = challenge != null ? challenge.getError()
                         .map(Problem::getDetail)
@@ -139,12 +139,12 @@ public class CreateCertTask implements Task {
             throw new AcmeException("Challenge failed... Giving up.");
         } finally {
             dnsProviderFactory.deleteSubDomainRecord();
-            log.info("DeleteSubDomainRecord type:{} ,domainName:{} , rr:{} SUCCESS", TYPE, domain, subDomainRR);
+            log.info("DeleteSubDomainRecord type:{} ,domainName:{} , dnsRecord:{} SUCCESS", TYPE, domain, dnsRecord);
         }
         log.info("Challenge for domain {} has been completed", auth.getIdentifier().getDomain());
     }
 
-    private Challenge checkAndTriggerChallenge(Authorization auth, String domain, String subDomainRR) throws Exception {
+    private Challenge checkAndTriggerChallenge(Authorization auth, String domain, String dnsRecord) throws Exception {
         if (auth.getStatus() != Status.PENDING) {
             return null;
         }
@@ -154,8 +154,8 @@ public class CreateCertTask implements Task {
             throw new AcmeException("No DNS challenge found for the domain " + auth.getIdentifier().getDomain());
         }
 
-        dnsProviderFactory.addDomainRecord(domain, subDomainRR, TYPE, challenge.getDigest(), 600L);
-        log.info("AddDomainRecord type:{}, rr: {} , value:{} SUCCESS", TYPE, subDomainRR, challenge.getDigest());
+        dnsProviderFactory.addDomainRecord(domain, dnsRecord, TYPE, challenge.getDigest(), 600L);
+        log.info("AddDomainRecord type:{}, rr: {} , value:{} SUCCESS", TYPE, dnsRecord, challenge.getDigest());
         challenge.trigger();
 
         challenge.waitForCompletion(TIMEOUT);
@@ -200,7 +200,7 @@ public class CreateCertTask implements Task {
      * 匹配子域名.前面的部分
      */
 
-    private String getSubDomainRR(String prefix, String domain, String subDomain) {
+    private String createDnsRecordName(String prefix, String domain, String subDomain) {
         if (domain.equals(subDomain)) {
             return prefix;
         }
