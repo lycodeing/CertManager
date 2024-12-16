@@ -4,54 +4,43 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
 /**
- * 证书请求操作日志
- * @TableName cert_requests_log
+ * 证书请求与后置处理器关联表
+ *
+ * @author lycodeing
+ * @TableName cert_task_post_processors
  */
-@TableName(value ="cert_requests_log")
+@TableName(value = "cert_task_post_processors")
 @Data
-public class RequestsLog implements Serializable {
+public class TaskPostProcessors implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 关联的证书请求ID
+     * 证书请求ID
      */
     private Integer requestId;
 
     /**
-     * 操作类型
+     * 后置处理器ID
      */
-    private Object action;
-
-    /**
-     * 操作相关的地址信息 (如IP地址，URL等)
-     */
-    private String address;
-
-    /**
-     * 操作时间
-     */
-    private LocalDateTime actionTime;
-
-    /**
-     * 操作的描述信息
-     */
-    private String message;
+    private Integer processorId;
 
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

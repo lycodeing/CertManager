@@ -4,18 +4,21 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 用于保存证书申请信息的表
+ *
+ * @author lycodeing
  * @TableName cert_requests
  */
-@TableName(value ="cert_requests")
+@TableName(value = "cert_task")
 @Data
-public class Requests implements Serializable {
+public class Task implements Serializable {
     /**
      * 证书申请记录的唯一ID
      */
@@ -72,6 +75,7 @@ public class Requests implements Serializable {
      */
     private LocalDateTime createTime;
 
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

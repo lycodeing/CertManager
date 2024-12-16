@@ -6,11 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/**
+ * @author lycodeing
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RequestDTO {
+public class TaskDTO {
     private Integer id;
 
     /**

@@ -6,6 +6,10 @@ import cn.lycodeing.cert.web.service.PostProcessorsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 后置处理器接口
+ * @author lycodeing
+ */
 @RestController
 @RequestMapping("/api/post/processors")
 public class PostProcessorsController {

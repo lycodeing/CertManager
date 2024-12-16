@@ -20,12 +20,17 @@ import org.shredzone.acme4j.util.KeyPairUtils;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.List;
 
+/**
+ *  创建证书任务
+ * @author lycodeing
+ */
 @Data
 @Slf4j
 public class CreateCertTask implements Task {
@@ -38,18 +43,33 @@ public class CreateCertTask implements Task {
     private Context context;
     protected CertTaskData certData;
 
-    public void setDNSProviderFactory(DnsEnum dns, String accessKey, String accessSecret) {
+    private void setDnsProviderFactory(DnsEnum dns, String accessKey, String accessSecret) {
         try {
-            dnsProviderFactory = DNSProviderFactoryUtils.createDnsProviderFactory(
-                    dns,
-                    accessKey,
-                    accessSecret
-            );
+            dnsProviderFactory = DNSProviderFactoryUtils.createDnsProviderFactory(dns, accessKey, accessSecret);
+        } catch (IOException e) {
+            handleException("Failed to query the Dns resolution provider due to I/O error", e, dns, accessKey);
+        } catch (IllegalArgumentException e) {
+            handleException("Failed to query the Dns resolution provider due to invalid argument", e, dns, accessKey);
         } catch (Exception e) {
-            log.error("Failed to query the Dns resolution provider, {}", e.getMessage(), e);
-            throw new RuntimeException("Failed to query the Dns resolution provider");
+            handleException("Failed to query the Dns resolution provider", e, dns, accessKey);
         }
     }
+
+    private void handleException(String message, Exception e, DnsEnum dns, String accessKey) {
+        String maskedAccessKey = maskSensitiveInfo(accessKey);
+        log.error("{} (DNS: {}, AccessKey: {}), {}", message, dns, maskedAccessKey, e.getMessage(), e);
+        throw new RuntimeException(message, e);
+    }
+
+    private String maskSensitiveInfo(String info) {
+        if (info == null || info.isEmpty()) {
+            return info;
+        }
+        int length = info.length();
+        int visibleLength = Math.min(4, length);
+        return info.substring(0, visibleLength) + "*".repeat(length - visibleLength);
+    }
+
 
     @Override
     public int execute(Context context) {
@@ -62,7 +82,7 @@ public class CreateCertTask implements Task {
         }
         long startTime = System.currentTimeMillis();
         log.info("The current certificate vendor is:{}", certData.getCertProvider().getType());
-        setDNSProviderFactory(DnsEnum.valueOf(certData.getDns().getDnsType()), certData.getDns().getAccessKey(), certData.getDns().getAccessSecret());
+        setDnsProviderFactory(DnsEnum.valueOf(certData.getDns().getDnsType()), certData.getDns().getAccessKey(), certData.getDns().getAccessSecret());
         // 查询当前申请证书的记录
         try {
             Certificate certificate = obtainCertificate(certData.getCertProvider().getType().getCaURI(), certData.getDomain(), certData.getCertPath(), certData.getEmail(), certData.getDomains(), certData.getCertProvider().getApiKey());
@@ -122,7 +142,7 @@ public class CreateCertTask implements Task {
 
     private void authorize(Authorization auth, String domain) throws Exception {
 
-        String dnsRecord = createDnsRecordName(Dns01Challenge.RECORD_NAME_PREFIX, domain, auth.getIdentifier().getDomain());
+        String dnsRecord = createDnsRecordName(domain, auth.getIdentifier().getDomain());
         log.info("Checking authorization for dnsRecord {}", dnsRecord);
         try {
             Challenge challenge = checkAndTriggerChallenge(auth, domain, dnsRecord);
@@ -197,16 +217,29 @@ public class CreateCertTask implements Task {
 
 
     /**
-     * 匹配子域名.前面的部分
+     * 创建DNS记录名称
+     * 该方法用于根据域名和子域名生成相应的DNS记录名称它遵循特定的逻辑来构造DNS记录名，
+     * 以适应ACME协议中DNS-01挑战的需要
+     *
+     * @param domain    域名，例如"example.com"
+     * @param subDomain 子域名，例如"sub.example.com"
+     * @return 生成的DNS记录名称
      */
-
-    private String createDnsRecordName(String prefix, String domain, String subDomain) {
+    private String createDnsRecordName(String domain, String subDomain) {
+        // 当域名和子域名相同时，直接返回DNS-01挑战记录的前缀
         if (domain.equals(subDomain)) {
-            return prefix;
+            return Dns01Challenge.RECORD_NAME_PREFIX;
         }
+
+        // 从子域名中分离出域名部分，并进一步分割得到首个子域名前缀
+        // 这里解释了为什么要这样做：为了构造符合ACME协议要求的DNS记录名称
         String subStr = subDomain.split(domain)[0].split("\\.")[0];
-        return prefix + CommonConstant.DOT + subStr;
+
+        // 返回构造的DNS记录名称，格式为：_acme-challenge.子域名前缀
+        // 这样做的目的是确保生成的记录名称符合ACME协议中对DNS-01挑战的要求
+        return Dns01Challenge.RECORD_NAME_PREFIX + CommonConstant.DOT + subStr;
     }
+
 
 
     /**

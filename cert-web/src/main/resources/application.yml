@@ -23,6 +23,10 @@ mybatis-plus:
     banner: false
 
 
+ssl:
+  path: /home/admin/logs/taskinfo/
+
+
 jwt:
   secret: 123456
   expiration-time: 30

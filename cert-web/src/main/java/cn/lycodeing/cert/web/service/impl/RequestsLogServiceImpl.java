@@ -1,9 +1,9 @@
 package cn.lycodeing.cert.web.service.impl;
 
+import cn.lycodeing.cert.web.domain.Instance;
+import cn.lycodeing.cert.web.mapper.InstanceMapper;
+import cn.lycodeing.cert.web.service.InstanceService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import cn.lycodeing.cert.web.domain.RequestsLog;
-import cn.lycodeing.cert.web.service.RequestsLogService;
-import cn.lycodeing.cert.web.mapper.RequestsLogMapper;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 * @createDate 2024-11-12 22:56:07
 */
 @Service
-public class RequestsLogServiceImpl extends ServiceImpl<RequestsLogMapper, RequestsLog>
-    implements RequestsLogService{
+public class RequestsLogServiceImpl extends ServiceImpl<InstanceMapper, Instance>
+    implements InstanceService {
 
 }
 

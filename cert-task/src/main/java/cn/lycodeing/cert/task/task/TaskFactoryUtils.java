@@ -6,6 +6,9 @@ import cn.lycodeing.cert.task.task.sftp.SFtpTask;
 import cn.lycodeing.cert.task.task.ssh.SSHTask;
 import cn.lycodeing.cert.task.task.ssl.CreateCertTask;
 
+/**
+ * @author lycodeing
+ */
 public class TaskFactoryUtils {
     public static Task getTask(TaskTypeEnum taskTypeEnum) {
         return switch (taskTypeEnum) {

@@ -4,56 +4,69 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-
-import lombok.Data;
+import java.util.Map;
 
 /**
- * 证书请求与后置处理器关联表
- * @TableName cert_requests_post_processors
+ * 证书请求操作日志
+ *
+ * @author lycodeing
+ * @TableName cert_requests_log
  */
-@TableName(value ="cert_requests_post_processors")
+@TableName(value = "cert_requests_log")
 @Data
-public class RequestsPostProcessors implements Serializable {
+public class Instance implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
 
     /**
-     * 证书请求ID
+     * 关联的证书任务ID
      */
-    private Integer requestId;
+    private Integer taskId;
 
     /**
-     * 后置处理器ID
+     * 证书名称
      */
-    private Integer processorId;
+    private String certName;
 
     /**
-     * 后置处理器参数（JSON格式）
+     * 任务状态
      */
-    private String parameters;
+    private Integer status;
 
     /**
-     * 处理状态
+     * 操作相关的地址信息 (如IP地址，URL等)
      */
-    private Object status;
+    private String address;
 
     /**
-     * 处理输出信息
+     * 操作时间
      */
-    private String output;
+    private LocalDateTime actionTime;
+
+    /**
+     * 操作的描述信息
+     */
+    private String message;
 
     /**
      * 创建时间
      */
     private LocalDateTime createTime;
+
+
+    /**
+     * 输出数据
+     */
+    private Map<String, String> output;
+
 
     @Serial
     @TableField(exist = false)

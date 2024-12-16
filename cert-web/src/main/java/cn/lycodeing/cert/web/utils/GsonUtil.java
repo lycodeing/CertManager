@@ -11,9 +11,14 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Gson 工具类
+ * @author lycodeing
+ */
 public class GsonUtil {
     private static final Gson GSON = new GsonBuilder()
-            .setPrettyPrinting() // 格式化输出
+            // 格式化输出
+            .setPrettyPrinting()
             .create();
 
     /**

@@ -3,18 +3,21 @@ package cn.lycodeing.cert.web.domain;
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * 后置处理器表
+ *
+ * @author lycodeing
  * @TableName cert_post_processors
  */
-@TableName(value ="cert_post_processors")
+@TableName(value = "cert_post_processors")
 @Data
 public class PostProcessors implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -50,6 +53,8 @@ public class PostProcessors implements Serializable {
      */
     private String parametersJson;
 
+
+    @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

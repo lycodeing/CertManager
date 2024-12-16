@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author lycodeing
+ */
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {

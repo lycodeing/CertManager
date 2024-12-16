@@ -7,33 +7,34 @@ import java.util.Map;
 
 /**
  * 任务执行管理类
+ * @author lycodeing
  */
 public class TaskExecutorManager {
-    private static final Map<String, TaskExecutor> taskExecutors = new HashMap<>(16);
+    private static final Map<String, TaskExecutor> TASK_EXECUTORS = new HashMap<>(16);
 
 
     public static TaskExecutor getTaskExecutor(String taskId) {
-        return taskExecutors.get(taskId);
+        return TASK_EXECUTORS.get(taskId);
     }
 
     public static void addTaskExecutor(String taskId, TaskExecutor taskExecutor) {
-        taskExecutors.put(taskId, taskExecutor);
+        TASK_EXECUTORS.put(taskId, taskExecutor);
     }
 
     public static void removeTaskExecutor(String taskId) {
-        taskExecutors.remove(taskId);
+        TASK_EXECUTORS.remove(taskId);
     }
 
 
     public static void killTaskExecutor(String taskId) {
-        TaskExecutor taskExecutor = taskExecutors.get(taskId);
+        TaskExecutor taskExecutor = TASK_EXECUTORS.get(taskId);
         if (taskExecutor != null) {
             taskExecutor.kill();
         }
     }
 
     public static void killAllTaskExecutor() {
-        taskExecutors.values().forEach(TaskExecutor::kill);
+        TASK_EXECUTORS.values().forEach(TaskExecutor::kill);
     }
 
 }
