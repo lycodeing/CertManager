@@ -61,11 +61,15 @@ public class Instance implements Serializable {
      */
     private LocalDateTime createTime;
 
+    /**
+     * 请求参数
+     */
+    private String paramsJson;
 
     /**
      * 输出数据
      */
-    private Map<String, String> output;
+    private Map<String, String> outputJson;
 
 
     @Serial

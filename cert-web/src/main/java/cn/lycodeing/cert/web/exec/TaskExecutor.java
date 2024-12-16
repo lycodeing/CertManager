@@ -6,15 +6,20 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Map;
 
+/**
+ * @author lycodeing
+ */
 @Slf4j
 public class TaskExecutor {
 
     private long pid;
 
+
     TaskExecutorThread executorThread;
 
     public TaskExecutor(Map<String, String> params) {
         executorThread = new TaskExecutorThread(params);
+        start();
     }
 
     /**

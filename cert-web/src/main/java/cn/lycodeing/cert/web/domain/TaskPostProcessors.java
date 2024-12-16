@@ -28,7 +28,7 @@ public class TaskPostProcessors implements Serializable {
     /**
      * 证书请求ID
      */
-    private Integer requestId;
+    private Integer taskId;
 
     /**
      * 后置处理器ID
