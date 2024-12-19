@@ -14,18 +14,21 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
+
 /**
  * 证书任务执行器
+ *
  * @author lycodeing
  */
 @Component
 @Slf4j
-public class CertTaskExecutor implements Runnable{
+public class CertTaskExecutor implements Runnable {
 
     /**
      * map 类型
      */
-    private static final Type MAP_TYPE = new TypeToken<Map<String,String>>(){}.getType();
+    private static final Type MAP_TYPE = new TypeToken<Map<String, String>>() {
+    }.getType();
 
 
     private final InstanceService service;
@@ -36,7 +39,7 @@ public class CertTaskExecutor implements Runnable{
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
                 // 1.读取Instance表数据
                 LambdaQueryWrapper<Instance> queryWrapper = Wrappers.lambdaQuery();
@@ -52,21 +55,21 @@ public class CertTaskExecutor implements Runnable{
                     TaskExecutorManager.addTaskExecutor(instance.getId().toString(), taskExecutor);
                 }
                 service.updateBatchById(list);
-            }catch (Exception e){
+            } catch (Exception e) {
                 sleep(100);
                 log.info("the task executor is abnormal procedure", e);
-            }finally {
-                sleep(500);
+            } finally {
+                sleep(1000);
             }
         }
     }
 
 
-    private void sleep(int millis){
-    	try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			log.info("CertTaskExecutor Sleep Error", e);
-		}
+    private void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            log.info("CertTaskExecutor Sleep Error", e);
+        }
     }
 }

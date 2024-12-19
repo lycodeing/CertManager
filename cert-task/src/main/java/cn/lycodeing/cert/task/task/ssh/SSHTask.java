@@ -1,7 +1,7 @@
 package cn.lycodeing.cert.task.task.ssh;
 
-import cn.lycodeing.cert.task.context.Context;
-import cn.lycodeing.cert.task.context.SSHTaskData;
+import cn.lycodeing.cert.common.context.Context;
+import cn.lycodeing.cert.common.context.SSHTaskData;
 import cn.lycodeing.cert.task.task.Task;
 import cn.lycodeing.cert.task.utils.GsonUtil;
 import com.jcraft.jsch.Channel;

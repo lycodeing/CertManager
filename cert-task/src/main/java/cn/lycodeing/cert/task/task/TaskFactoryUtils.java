@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.task.task;
 
-import cn.lycodeing.cert.task.enums.TaskTypeEnum;
+import cn.lycodeing.cert.common.enums.TaskTypeEnum;
 import cn.lycodeing.cert.task.task.cdn.CdnTask;
 import cn.lycodeing.cert.task.task.sftp.SFtpTask;
 import cn.lycodeing.cert.task.task.ssh.SSHTask;

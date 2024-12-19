@@ -1,8 +1,8 @@
 package cn.lycodeing.cert.task.task.cdn;
 
+import cn.lycodeing.cert.common.context.CdnTaskData;
+import cn.lycodeing.cert.common.context.Context;
 import cn.lycodeing.cert.task.client.cdn.*;
-import cn.lycodeing.cert.task.context.CdnTaskData;
-import cn.lycodeing.cert.task.context.Context;
 import cn.lycodeing.cert.task.task.Task;
 import cn.lycodeing.cert.task.utils.FileUtil;
 import cn.lycodeing.cert.task.utils.GsonUtil;

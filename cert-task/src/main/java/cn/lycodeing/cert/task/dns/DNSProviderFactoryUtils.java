@@ -1,10 +1,10 @@
 package cn.lycodeing.cert.task.dns;
 
+import cn.lycodeing.cert.common.enums.DnsEnum;
 import cn.lycodeing.cert.task.dns.impl.AliyunDNSProviderFactory;
 import cn.lycodeing.cert.task.dns.impl.HuaWeiDNSProviderFactory;
 import cn.lycodeing.cert.task.dns.impl.TencentDNSProviderFactory;
 import cn.lycodeing.cert.task.dns.impl.WestDNSProviderFactory;
-import cn.lycodeing.cert.task.enums.DnsEnum;
 
 public class DNSProviderFactoryUtils {
 

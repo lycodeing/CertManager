@@ -1,4 +1,4 @@
-package cn.lycodeing.cert.task.enums;
+package cn.lycodeing.cert.common.enums;
 
 public enum PostProcessorTypeEnum {
     /**

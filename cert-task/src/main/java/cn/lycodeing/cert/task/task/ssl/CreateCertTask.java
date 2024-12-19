@@ -1,13 +1,13 @@
 package cn.lycodeing.cert.task.task.ssl;
 
+import cn.lycodeing.cert.common.context.CertTaskData;
+import cn.lycodeing.cert.common.context.Context;
+import cn.lycodeing.cert.common.enums.DnsEnum;
 import cn.lycodeing.cert.task.client.ssl.LetsEncryptCertClient;
 import cn.lycodeing.cert.task.client.ssl.ZeroSslCertClient;
 import cn.lycodeing.cert.task.constant.CommonConstant;
-import cn.lycodeing.cert.task.context.CertTaskData;
-import cn.lycodeing.cert.task.context.Context;
 import cn.lycodeing.cert.task.dns.DNSProviderFactory;
 import cn.lycodeing.cert.task.dns.DNSProviderFactoryUtils;
-import cn.lycodeing.cert.task.enums.DnsEnum;
 import cn.lycodeing.cert.task.task.Task;
 import cn.lycodeing.cert.task.utils.GsonUtil;
 import lombok.Data;

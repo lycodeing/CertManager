@@ -1,7 +1,7 @@
 package cn.lycodeing.cert.task.task.sftp;
 
-import cn.lycodeing.cert.task.context.Context;
-import cn.lycodeing.cert.task.context.SFtpTaskData;
+import cn.lycodeing.cert.common.context.Context;
+import cn.lycodeing.cert.common.context.SFtpTaskData;
 import cn.lycodeing.cert.task.task.Task;
 import cn.lycodeing.cert.task.utils.FileUtil;
 import cn.lycodeing.cert.task.utils.GsonUtil;

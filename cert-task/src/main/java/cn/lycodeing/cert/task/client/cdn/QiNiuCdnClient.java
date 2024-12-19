@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.task.client.cdn;
 
-import cn.lycodeing.cert.task.context.CdnTaskData;
+import cn.lycodeing.cert.common.context.CdnTaskData;
 import cn.lycodeing.cert.task.utils.GsonUtil;
 import cn.lycodeing.cert.task.utils.HttpClientUtil;
 import com.google.gson.annotations.SerializedName;

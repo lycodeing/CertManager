@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.task.task;
 
-import cn.lycodeing.cert.task.context.Context;
+import cn.lycodeing.cert.common.context.Context;
 
 public interface Task {
 

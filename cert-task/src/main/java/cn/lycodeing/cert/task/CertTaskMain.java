@@ -1,8 +1,8 @@
 package cn.lycodeing.cert.task;
 
+import cn.lycodeing.cert.common.context.Context;
+import cn.lycodeing.cert.common.enums.TaskTypeEnum;
 import cn.lycodeing.cert.task.constant.SystemConstant;
-import cn.lycodeing.cert.task.context.Context;
-import cn.lycodeing.cert.task.enums.TaskTypeEnum;
 import cn.lycodeing.cert.task.task.Task;
 import cn.lycodeing.cert.task.task.TaskFactoryUtils;
 import org.apache.commons.lang3.StringUtils;

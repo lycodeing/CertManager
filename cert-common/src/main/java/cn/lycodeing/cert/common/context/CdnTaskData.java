@@ -1,6 +1,6 @@
-package cn.lycodeing.cert.task.context;
+package cn.lycodeing.cert.common.context;
 
-import cn.lycodeing.cert.task.enums.PostProcessorTypeEnum;
+import cn.lycodeing.cert.common.enums.PostProcessorTypeEnum;
 import lombok.Data;
 
 @Data

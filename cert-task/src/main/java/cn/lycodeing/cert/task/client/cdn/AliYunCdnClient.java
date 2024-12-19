@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.task.client.cdn;
 
-import cn.lycodeing.cert.task.context.CdnTaskData;
+import cn.lycodeing.cert.common.context.CdnTaskData;
 import com.aliyun.cas20200407.Client;
 import com.aliyun.cas20200407.models.UploadUserCertificateRequest;
 import com.aliyun.cas20200407.models.UploadUserCertificateResponse;

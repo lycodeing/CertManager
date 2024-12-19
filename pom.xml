@@ -18,6 +18,7 @@
     <modules>
         <module>cert-web</module>
         <module>cert-task</module>
+        <module>cert-common</module>
     </modules>
     <properties>
         <!--设置自定义cert统一项目的版本号-->
@@ -45,6 +46,11 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>cn.lycodeing</groupId>
+                <artifactId>cert-common</artifactId>
+                <version>${revision}</version>
+            </dependency>
             <!--JSR303依赖 -->
             <dependency>
                 <groupId>org.hibernate.validator</groupId>
@@ -89,26 +95,11 @@
                 <artifactId>spring-boot-starter-validation</artifactId>
                 <version>3.3.5</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-
-
             <!-- 用于简化版本控制 -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

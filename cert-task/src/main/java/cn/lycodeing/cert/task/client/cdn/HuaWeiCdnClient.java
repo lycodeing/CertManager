@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.task.client.cdn;
 
-import cn.lycodeing.cert.task.context.CdnTaskData;
+import cn.lycodeing.cert.common.context.CdnTaskData;
 import cn.lycodeing.cert.task.utils.GsonUtil;
 import com.huaweicloud.sdk.core.auth.GlobalCredentials;
 import com.huaweicloud.sdk.core.auth.ICredential;
