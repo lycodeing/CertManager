@@ -17,7 +17,7 @@ import java.util.Map;
  * @author lycodeing
  * @TableName cert_requests_log
  */
-@TableName(value = "cert_requests_log")
+@TableName(value = "cert_instance")
 @Data
 public class Instance implements Serializable {
     /**
@@ -64,7 +64,7 @@ public class Instance implements Serializable {
     /**
      * 请求参数
      */
-    private String paramsJson;
+    private String jsonData;
 
     /**
      * 输出数据

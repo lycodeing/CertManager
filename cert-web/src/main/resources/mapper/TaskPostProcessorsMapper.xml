@@ -4,13 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lycodeing.cert.web.mapper.TaskPostProcessorsMapper">
 
-    <resultMap id="BaseResultMap" type="cn.lycodeing.cert.web.domain.RequestsPostProcessors">
+    <resultMap id="BaseResultMap" type="cn.lycodeing.cert.web.domain.TaskPostProcessors">
             <id property="id" column="id" jdbcType="INTEGER"/>
-            <result property="requestId" column="request_id" jdbcType="INTEGER"/>
+            <result property="taskId" column="task_id" jdbcType="INTEGER"/>
             <result property="processorId" column="processor_id" jdbcType="INTEGER"/>
-            <result property="parameters" column="parameters" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="OTHER"/>
-            <result property="output" column="output" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
