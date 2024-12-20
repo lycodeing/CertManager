@@ -1,6 +1,7 @@
 package cn.lycodeing.cert.web.service.impl;
 
 import cn.lycodeing.cert.web.domain.Instance;
+import cn.lycodeing.cert.web.domain.PostProcessors;
 import cn.lycodeing.cert.web.domain.Task;
 import cn.lycodeing.cert.web.dto.request.TaskDTO;
 import cn.lycodeing.cert.web.enums.InstanceStatusEnum;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author lycodeing
- * @description 针对表【cert_requests(用于保存证书申请信息的表)】的数据库操作Service实现
+ * @description 针对表【cert_task(用于保存证书申请信息的表)】的数据库操作Service实现
  * @createDate 2024-11-12 22:56:07
  */
 @Service
@@ -68,6 +69,39 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
         entity.setAddress(sslPath + getPath());
         entity.setActionTime(LocalDateTime.now());
         instanceService.save(entity);
+    }
+
+
+    /**
+     * 创建复合L1实例
+     *
+     * @param task 任务
+     * @return
+     */
+    public Integer saveComplexInstance(Task task) {
+        return 0;
+    }
+
+
+    /**
+     * 创建L1类型的实例
+     *
+     * @param task             任务
+     * @param parentInstanceId 父实例id
+     */
+    public void saveCertInstance(Task task, Integer parentInstanceId) {
+
+    }
+
+
+    /**
+     * 创建证书任务的后置任务实例
+     *
+     * @param postProcessors   后置处理器任务
+     * @param parentInstanceId 父实例id
+     */
+    public void savePostInstance(PostProcessors postProcessors, Integer parentInstanceId) {
+
     }
 
 
