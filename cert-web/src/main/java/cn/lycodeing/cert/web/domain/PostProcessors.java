@@ -34,6 +34,7 @@ public class PostProcessors implements Serializable {
 
     /**
      * 类型
+     * {@link cn.lycodeing.cert.common.enums.TaskTypeEnum}
      */
     private String processorType;
 

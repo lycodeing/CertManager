@@ -4,6 +4,11 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
+/**
+ * dns 供应商参数
+ *
+ * @author lycodeing
+ */
 @Data
 public class DnsProvidersDTO {
     private Integer id;

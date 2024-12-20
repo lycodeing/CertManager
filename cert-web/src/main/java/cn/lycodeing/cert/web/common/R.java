@@ -2,6 +2,11 @@ package cn.lycodeing.cert.web.common;
 
 import lombok.Data;
 
+/**
+ * 响应结果
+ *
+ * @author lycodeing
+ */
 @Data
 public class R<T> {
     private Integer code;

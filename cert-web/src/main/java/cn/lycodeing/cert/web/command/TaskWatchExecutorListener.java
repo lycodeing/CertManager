@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+// 确保springUtil先初始化
 @DependsOn("springUtil")
 public class TaskWatchExecutorListener implements ServletContextListener {
 

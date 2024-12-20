@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * web 配置
+ *
+ * @author lycodeing
+ */
 @Configuration
 @EnableConfigurationProperties(AuthProperties.class)
 public class WebConfig implements WebMvcConfigurer {

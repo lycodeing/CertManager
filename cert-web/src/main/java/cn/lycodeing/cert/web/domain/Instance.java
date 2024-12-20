@@ -32,9 +32,9 @@ public class Instance implements Serializable {
     private Integer taskId;
 
     /**
-     * 证书名称
+     * 任务名称
      */
-    private String certName;
+    private String name;
 
     /**
      * 任务状态
@@ -70,6 +70,11 @@ public class Instance implements Serializable {
      * 输出数据
      */
     private Map<String, String> outputJson;
+
+    /**
+     * 父实例id
+     */
+    private Integer parentInstanceId;
 
 
     @Serial

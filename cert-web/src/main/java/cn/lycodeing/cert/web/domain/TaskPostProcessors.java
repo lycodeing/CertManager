@@ -40,6 +40,11 @@ public class TaskPostProcessors implements Serializable {
      */
     private LocalDateTime createTime;
 
+    /**
+     * 排序
+     */
+    private Integer sort;
+
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

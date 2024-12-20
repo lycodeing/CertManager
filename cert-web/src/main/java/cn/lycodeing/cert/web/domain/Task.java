@@ -75,6 +75,11 @@ public class Task implements Serializable {
      */
     private LocalDateTime createTime;
 
+    /**
+     * 绑定的dns解析供应商id
+     */
+    private Integer dnsId;
+
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

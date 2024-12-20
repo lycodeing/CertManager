@@ -7,6 +7,10 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * MybatisPlus配置
+ * @author lycodeing
+ */
 @MapperScan(basePackages = "cn.lycodeing.cert.web.mapper")
 @Configuration
 public class MybatisPlusConfig {
