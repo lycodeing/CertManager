@@ -112,7 +112,7 @@ public class InstanceServiceImpl extends ServiceImpl<InstanceMapper, Instance>
      * @return jsonData
      */
     public String buildCertTaskData(Task task) {
-        DnsProviders dns = dnsProvidersService.getById(task.getDnsId());
+        DnsProvider dns = dnsProvidersService.getById(task.getDnsId());
         CertTaskData certTaskData = new CertTaskData();
         certTaskData.setEmail(task.getEmail());
         certTaskData.setCertPath(sslPath + getPath());
@@ -134,34 +134,34 @@ public class InstanceServiceImpl extends ServiceImpl<InstanceMapper, Instance>
      * @param parentInstanceId 父实例id
      */
     public void savePostInstance(Task task, Integer parentInstanceId) {
-        LambdaQueryWrapper<TaskPostProcessors> queryWrapper = Wrappers.lambdaQuery();
-        queryWrapper.eq(TaskPostProcessors::getTaskId, task.getId());
-        queryWrapper.orderByAsc(TaskPostProcessors::getSort);
-        List<TaskPostProcessors> taskPostProcessorList = taskPostProcessorsService.list(queryWrapper);
+        LambdaQueryWrapper<TaskPostProcessor> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(TaskPostProcessor::getTaskId, task.getId());
+        queryWrapper.orderByAsc(TaskPostProcessor::getSort);
+        List<TaskPostProcessor> taskPostProcessorList = taskPostProcessorsService.list(queryWrapper);
         if (CollectionUtils.isEmpty(taskPostProcessorList)) {
             return;
         }
         // 获取PostProcessors
         List<Integer> processorIds = taskPostProcessorList.stream()
-                .map(TaskPostProcessors::getProcessorId)
+                .map(TaskPostProcessor::getProcessorId)
                 .toList();
-        List<PostProcessors> processorsList = postProcessorsService.listByIds(processorIds);
+        List<PostProcessor> processorsList = postProcessorsService.listByIds(processorIds);
         if (CollectionUtils.isEmpty(processorsList)) {
             return;
         }
-        Map<Integer, PostProcessors> id2Entity = processorsList.stream().collect(Collectors.toMap(PostProcessors::getId, p -> p));
-        for (TaskPostProcessors taskPostProcessor : taskPostProcessorList) {
-            PostProcessors postProcessors = id2Entity.get(taskPostProcessor.getProcessorId());
+        Map<Integer, PostProcessor> id2Entity = processorsList.stream().collect(Collectors.toMap(PostProcessor::getId, p -> p));
+        for (TaskPostProcessor taskPostProcessor : taskPostProcessorList) {
+            PostProcessor postProcessor = id2Entity.get(taskPostProcessor.getProcessorId());
             // 创建L2实例
             Instance instance = new Instance();
             instance.setName(task.getDomain());
             instance.setParentInstanceId(parentInstanceId);
             instance.setStatus(InstanceStatusEnum.WAITING.getCode());
-            instance.setTaskType(postProcessors.getProcessorType());
+            instance.setTaskType(postProcessor.getProcessorType());
             instance.setActionTime(LocalDateTime.now());
             instance.setCreateTime(LocalDateTime.now());
             instance.setAddress(sslPath + getPath());
-            instance.setJsonData(postProcessors.getJsonData());
+            instance.setJsonData(postProcessor.getJsonData());
         }
     }
 

@@ -1,7 +1,7 @@
 package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
-import cn.lycodeing.cert.web.domain.PostProcessors;
+import cn.lycodeing.cert.web.domain.PostProcessor;
 import cn.lycodeing.cert.web.dto.request.PostProcessorsDTO;
 import cn.lycodeing.cert.web.dto.response.PostProcessorsOptionsDTO;
 import cn.lycodeing.cert.web.security.SecurityContext;
@@ -42,8 +42,8 @@ public class PostProcessorsController {
     @GetMapping("/options")
     public R<List<PostProcessorsOptionsDTO>> options() {
         Integer userId = SecurityContext.getUserId();
-        LambdaQueryWrapper<PostProcessors> queryWrapper = Wrappers.lambdaQuery();
-        queryWrapper.eq(PostProcessors::getUserId, userId);
+        LambdaQueryWrapper<PostProcessor> queryWrapper = Wrappers.lambdaQuery();
+        queryWrapper.eq(PostProcessor::getUserId, userId);
         List<PostProcessorsOptionsDTO> dtoList = postProcessorsService.list(queryWrapper).stream()
                 .map(post -> PostProcessorsOptionsDTO.builder()
                         .postId(post.getId())

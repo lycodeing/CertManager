@@ -17,7 +17,7 @@ import java.util.Map;
  * @author lycodeing
  * @TableName cert_requests_log
  */
-@TableName(value = "cert_instance")
+@TableName(value = "cert_instances")
 @Data
 public class Instance implements Serializable {
     /**
@@ -82,6 +82,16 @@ public class Instance implements Serializable {
      */
     private String taskType;
 
+    /**
+     * 开始运行时间
+     */
+    private LocalDateTime startTime;
+
+
+    /**
+     * 任务完成时间
+     */
+    private LocalDateTime completedTime;
 
     @Serial
     @TableField(exist = false)

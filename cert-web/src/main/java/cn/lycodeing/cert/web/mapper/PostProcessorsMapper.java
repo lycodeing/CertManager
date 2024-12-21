@@ -1,15 +1,15 @@
 package cn.lycodeing.cert.web.mapper;
 
-import cn.lycodeing.cert.web.domain.PostProcessors;
+import cn.lycodeing.cert.web.domain.PostProcessor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
 * @author lycodeing
 * @description 针对表【cert_post_processors(后置处理器表)】的数据库操作Mapper
 * @createDate 2024-11-12 22:56:07
-* @Entity cn.lycodeing.cert.web.domain.PostProcessors
+* @Entity cn.lycodeing.cert.web.domain.PostProcessor
 */
-public interface PostProcessorsMapper extends BaseMapper<PostProcessors> {
+public interface PostProcessorsMapper extends BaseMapper<PostProcessor> {
 
 }
 

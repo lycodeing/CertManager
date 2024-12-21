@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.web.service.impl;
 
-import cn.lycodeing.cert.web.domain.PostProcessors;
+import cn.lycodeing.cert.web.domain.PostProcessor;
 import cn.lycodeing.cert.web.dto.request.PostProcessorsDTO;
 import cn.lycodeing.cert.web.mapper.PostProcessorsMapper;
 import cn.lycodeing.cert.web.service.PostProcessorsService;
@@ -13,17 +13,17 @@ import org.springframework.stereotype.Service;
 * @createDate 2024-11-12 22:56:07
 */
 @Service
-public class PostProcessorsServiceImpl extends ServiceImpl<PostProcessorsMapper, PostProcessors>
+public class PostProcessorsServiceImpl extends ServiceImpl<PostProcessorsMapper, PostProcessor>
     implements PostProcessorsService{
 
     @Override
     public void add(PostProcessorsDTO processorsDTO) {
-        PostProcessors postProcessors = new PostProcessors();
-        postProcessors.setProcessorName(processorsDTO.getProcessorName());
-        postProcessors.setProcessorType(processorsDTO.getProcessorType());
-        postProcessors.setDescription(processorsDTO.getDescription());
-        postProcessors.setJsonData(processorsDTO.getParametersJson());
-        int insert = this.baseMapper.insert(postProcessors);
+        PostProcessor postProcessor = new PostProcessor();
+        postProcessor.setProcessorName(processorsDTO.getProcessorName());
+        postProcessor.setProcessorType(processorsDTO.getProcessorType());
+        postProcessor.setDescription(processorsDTO.getDescription());
+        postProcessor.setJsonData(processorsDTO.getParametersJson());
+        int insert = this.baseMapper.insert(postProcessor);
         if (insert != 1) {
             throw new RuntimeException("添加失败");
         }

@@ -1,7 +1,7 @@
 package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
-import cn.lycodeing.cert.web.domain.DnsProviders;
+import cn.lycodeing.cert.web.domain.DnsProvider;
 import cn.lycodeing.cert.web.dto.request.DnsProvidersDTO;
 import cn.lycodeing.cert.web.dto.response.DnsOptionDTO;
 import cn.lycodeing.cert.web.security.SecurityContext;
@@ -32,7 +32,7 @@ public class DnsProvidersController {
     @PostMapping
     public R<Void> add(@RequestBody @Validated DnsProvidersDTO request) {
         log.info("添加DNS提供商: {}", request);
-        dnsProvidersService.save(DnsProviders.builder()
+        dnsProvidersService.save(DnsProvider.builder()
                 .userId(SecurityContext.getUserId())
                 .providerName(request.getProviderName())
                 .providerType(request.getProviderType())

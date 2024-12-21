@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.web.service.impl;
 
-import cn.lycodeing.cert.web.domain.Users;
+import cn.lycodeing.cert.web.domain.User;
 import cn.lycodeing.cert.web.mapper.UsersMapper;
 import cn.lycodeing.cert.web.service.UsersService;
 import cn.lycodeing.cert.web.utils.JwtUtil;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
  * @createDate 2024-11-12 22:56:07
  */
 @Service
-public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
+public class UsersServiceImpl extends ServiceImpl<UsersMapper, User>
         implements UsersService {
 
     private final JwtUtil jwtUtil;
@@ -27,15 +27,15 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
 
     @Override
     public String login(String username, String password) {
-        LambdaQueryWrapper<Users> wrapper = Wrappers.lambdaQuery(Users.class);
-        wrapper.eq(Users::getUsername, username);
-        Users users = this.baseMapper.selectOne(wrapper);
-        if (users == null) {
+        LambdaQueryWrapper<User> wrapper = Wrappers.lambdaQuery(User.class);
+        wrapper.eq(User::getUsername, username);
+        User user = this.baseMapper.selectOne(wrapper);
+        if (user == null) {
             throw new RuntimeException("用户不存在");
         }
         String md5Pwd = DigestUtils.md5Hex(password.getBytes());
-        if (md5Pwd.equals(users.getPassword())) {
-            return jwtUtil.createJwt(users.getUserId());
+        if (md5Pwd.equals(user.getPassword())) {
+            return jwtUtil.createJwt(user.getUserId());
         }
         throw new RuntimeException("用户名或密码错误");
     }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.lycodeing.cert.web.mapper.UsersMapper">
 
-    <resultMap id="BaseResultMap" type="cn.lycodeing.cert.web.domain.Users">
+    <resultMap id="BaseResultMap" type="cn.lycodeing.cert.web.domain.User">
             <id property="userId" column="user_id" jdbcType="INTEGER"/>
             <result property="username" column="username" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>

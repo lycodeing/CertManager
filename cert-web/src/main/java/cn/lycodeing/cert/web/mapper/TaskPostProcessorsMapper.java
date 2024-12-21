@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.web.mapper;
 
-import cn.lycodeing.cert.web.domain.TaskPostProcessors;
+import cn.lycodeing.cert.web.domain.TaskPostProcessor;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-11-12 22:56:07
 * @Entity cn.lycodeing.cert.web.domain.RequestsPostProcessors
 */
-public interface TaskPostProcessorsMapper extends BaseMapper<TaskPostProcessors> {
+public interface TaskPostProcessorsMapper extends BaseMapper<TaskPostProcessor> {
 
 }
 

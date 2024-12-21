@@ -1,6 +1,6 @@
 package cn.lycodeing.cert.web.service.impl;
 
-import cn.lycodeing.cert.web.domain.TaskPostProcessors;
+import cn.lycodeing.cert.web.domain.TaskPostProcessor;
 import cn.lycodeing.cert.web.mapper.TaskPostProcessorsMapper;
 import cn.lycodeing.cert.web.service.TaskPostProcessorsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 * @createDate 2024-11-12 22:56:07
 */
 @Service
-public class TaskPostProcessorsServiceImpl extends ServiceImpl<TaskPostProcessorsMapper, TaskPostProcessors>
+public class TaskPostProcessorsServiceImpl extends ServiceImpl<TaskPostProcessorsMapper, TaskPostProcessor>
     implements TaskPostProcessorsService {
 
 }

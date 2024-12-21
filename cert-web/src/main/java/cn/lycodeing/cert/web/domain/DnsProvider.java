@@ -4,50 +4,62 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 用户表
+ * DNS提供商表
+ *
  * @author lycodeing
- * @TableName cert_users
+ * @TableName cert_dns_providers
  */
-@TableName(value ="cert_users")
+@TableName(value = "cert_dns_providers")
 @Data
-public class Users implements Serializable {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class DnsProvider implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
+    private Integer id;
+
+    /**
+     *
+     */
     private Integer userId;
 
     /**
-     * 用户名
+     * DNS提供商名称
      */
-    private String username;
+    private String providerName;
 
     /**
-     * 用户邮箱
+     * DNS提供商类型
      */
-    private String email;
+    private String providerType;
 
     /**
-     * 密码哈希
+     * 提供商描述
      */
-    private String password;
+    private String description;
 
     /**
-     * 用户全名
+     * 访问密钥 (AK)
      */
-    private String fullName;
+    private String accessKey;
 
     /**
-     * 用户角色
+     * 安全密钥 (SK)
      */
-    private Object role;
+    private String secretKey;
 
     /**
      * 创建时间

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  * @author lycodeing
  * @TableName cert_requests
  */
-@TableName(value = "cert_task")
+@TableName(value = "cert_tasks")
 @Data
 public class Task implements Serializable {
     /**

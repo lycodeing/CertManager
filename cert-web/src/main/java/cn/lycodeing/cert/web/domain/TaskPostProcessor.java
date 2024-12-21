@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  */
 @TableName(value = "cert_task_post_processors")
 @Data
-public class TaskPostProcessors implements Serializable {
+public class TaskPostProcessor implements Serializable {
     /**
      *
      */
