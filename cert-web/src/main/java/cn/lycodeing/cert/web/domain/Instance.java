@@ -77,6 +77,12 @@ public class Instance implements Serializable {
     private Integer parentInstanceId;
 
 
+    /**
+     * 任务类型
+     */
+    private String taskType;
+
+
     @Serial
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;

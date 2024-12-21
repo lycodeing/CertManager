@@ -68,7 +68,7 @@ public class Task implements Serializable {
     /**
      * 要申请证书的域名列表
      */
-    private Object domainsList;
+    private String domainsList;
 
     /**
      * 申请时间

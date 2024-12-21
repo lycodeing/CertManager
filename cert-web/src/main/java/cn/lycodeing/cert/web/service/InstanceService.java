@@ -1,6 +1,7 @@
 package cn.lycodeing.cert.web.service;
 
 import cn.lycodeing.cert.web.domain.Instance;
+import cn.lycodeing.cert.web.domain.Task;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -10,4 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface InstanceService extends IService<Instance> {
 
+
+
+    void createInstance(Task task);
 }

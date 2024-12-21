@@ -1,10 +1,14 @@
 package cn.lycodeing.cert.common.context;
 
 import cn.lycodeing.cert.common.enums.CertProviderEnum;
+import cn.lycodeing.cert.common.enums.DnsEnum;
 import lombok.Data;
 
 import java.util.List;
 
+/**
+ * @author lycodeing
+ */
 @Data
 public class CertTaskData {
 
@@ -50,9 +54,9 @@ public class CertTaskData {
         /**
          * 类型
          */
-        private String dnsType;
+        private DnsEnum dnsType;
 
-        public DnsData(String accessKey, String accessSecret, String dnsType) {
+        public DnsData(String accessKey, String accessSecret, DnsEnum dnsType) {
             this.accessKey = accessKey;
             this.accessSecret = accessSecret;
             this.dnsType = dnsType;

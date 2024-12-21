@@ -1,5 +1,6 @@
 package cn.lycodeing.cert.web.command;
 
+import cn.lycodeing.cert.common.enums.TaskTypeEnum;
 import cn.lycodeing.cert.web.domain.Instance;
 import cn.lycodeing.cert.web.enums.InstanceStatusEnum;
 import cn.lycodeing.cert.web.exec.TaskExecutor;
@@ -10,10 +11,12 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -42,6 +45,13 @@ public class TaskWatchEventExecutor {
 
     private final InstanceService service = SpringUtil.getBean(InstanceService.class);
 
+
+    /**
+     * 自定义查询的最大查询数量
+     */
+    private static final int MAX_QUERY_COUNT = 100;
+
+
     /**
      * 证书任务线程
      */
@@ -68,11 +78,14 @@ public class TaskWatchEventExecutor {
         @Override
         public void run() {
             while (!running.get()) {
+                List<Instance> list = new ArrayList<>();
                 try {
                     // 1.读取Instance表数据
                     LambdaQueryWrapper<Instance> queryWrapper = Wrappers.lambdaQuery();
                     queryWrapper.eq(Instance::getStatus, InstanceStatusEnum.WAITING.getCode());
-                    List<Instance> list = service.list(queryWrapper);
+                    queryWrapper.eq(Instance::getTaskType, TaskTypeEnum.SSL.name());
+                    queryWrapper.last("limit " + MAX_QUERY_COUNT);
+                    list = service.list(queryWrapper);
                     for (Instance instance : list) {
                         // 2.更新Instance表状态为running
                         instance.setStatus(InstanceStatusEnum.RUNNER.getCode());
@@ -87,7 +100,11 @@ public class TaskWatchEventExecutor {
                     sleep(100);
                     log.info("the task executor is abnormal procedure", e);
                 } finally {
-                    sleep(1000);
+                    if(CollectionUtils.isEmpty(list) || list.size()  < MAX_QUERY_COUNT){
+                        log.debug("The current number of tasks :{}, the maximum number of tasks not satisfied :{}, sleep :{} ms", list.size(), MAX_QUERY_COUNT, 1000);
+                        sleep(1000);
+                    }
+                    sleep(500);
                 }
             }
         }

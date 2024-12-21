@@ -32,5 +32,8 @@ public class CdnTaskData {
     private String alisaName;
 
 
+    /**
+     * 处理器类型
+     */
     public PostProcessorTypeEnum type;
 }

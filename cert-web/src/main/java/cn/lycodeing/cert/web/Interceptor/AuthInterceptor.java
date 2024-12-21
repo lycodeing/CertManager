@@ -50,7 +50,9 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (!authHeader.startsWith(authProperties.getTokenPrefix())) {
             sendErrorResponse(response, 403, "认证错误");
         }
-        boolean authentication = authentication(authHeader);
+        // 移除前缀
+        String token = authHeader.replace(authProperties.getTokenPrefix(), "");
+        boolean authentication = authentication(token);
         if(! authentication){
             sendErrorResponse(response, 403, "认证错误");
         }
@@ -77,7 +79,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             Integer userId = jwtUtil.getUserId(token);
             SecurityContext.setUserId(userId);
         } catch (Exception e) {
-            log.error("token认证失败");
+            log.error("token认证失败",e);
             return false;
         }
         return true;
