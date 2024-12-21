@@ -11,10 +11,11 @@
             <result property="processorType" column="processor_type" jdbcType="VARCHAR"/>
             <result property="description" column="description" jdbcType="VARCHAR"/>
             <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="jsonData" column="json_data" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
         id,user_id,processor_name,
-        processor_type,description,create_time
+        processor_type,`description`,create_time
     </sql>
 </mapper>

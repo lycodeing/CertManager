@@ -44,7 +44,7 @@ public class DnsProviders implements Serializable {
     /**
      * DNS提供商类型
      */
-    private Object providerType;
+    private String providerType;
 
     /**
      * 提供商描述

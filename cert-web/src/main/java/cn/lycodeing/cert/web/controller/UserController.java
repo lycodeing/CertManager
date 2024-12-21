@@ -1,13 +1,13 @@
 package cn.lycodeing.cert.web.controller;
 
 import cn.lycodeing.cert.web.common.R;
+import cn.lycodeing.cert.web.domain.Users;
 import cn.lycodeing.cert.web.dto.response.LoginDTO;
+import cn.lycodeing.cert.web.dto.response.UserDTO;
+import cn.lycodeing.cert.web.security.SecurityContext;
 import cn.lycodeing.cert.web.service.UsersService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户相关接口
@@ -34,4 +34,10 @@ public class UserController {
         return R.ok(LoginDTO.builder().token(token).build());
     }
 
+    @GetMapping("/info")
+    public R<UserDTO> info() {
+        Integer userId = SecurityContext.getUserId();
+        Users users = usersService.getById(userId);
+        return R.ok(UserDTO.builder().id(1).username(users.getUsername()).email("lycodeing@qq.com").avatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif").build());
+    }
 }

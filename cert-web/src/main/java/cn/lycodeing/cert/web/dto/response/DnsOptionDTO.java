@@ -4,11 +4,13 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
- *  登录返回
  * @author lycodeing
  */
 @Data
 @Builder
-public class LoginDTO {
-    private String token;
+public class DnsOptionDTO {
+
+    private Integer dnsId;
+
+    private String providerName;
 }

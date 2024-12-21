@@ -1,9 +1,14 @@
 package cn.lycodeing.cert.web.dto.request;
 
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
+/**
+ * @author lycodeing
+ */
+@Builder
 @Data
 public class PostProcessorsDTO {
 

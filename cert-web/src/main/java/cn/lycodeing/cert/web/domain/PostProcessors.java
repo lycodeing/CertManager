@@ -51,8 +51,11 @@ public class PostProcessors implements Serializable {
 
     /**
      * 参数json字符串
+     * {@link cn.lycodeing.cert.common.context.SFtpTaskData}
+     * {@link cn.lycodeing.cert.common.context.SSHTaskData}
+     * {@link cn.lycodeing.cert.common.context.CertTaskData}
      */
-    private String parametersJson;
+    private String jsonData;
 
 
     @Serial

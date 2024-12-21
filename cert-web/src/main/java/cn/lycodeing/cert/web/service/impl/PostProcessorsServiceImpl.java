@@ -22,7 +22,7 @@ public class PostProcessorsServiceImpl extends ServiceImpl<PostProcessorsMapper,
         postProcessors.setProcessorName(processorsDTO.getProcessorName());
         postProcessors.setProcessorType(processorsDTO.getProcessorType());
         postProcessors.setDescription(processorsDTO.getDescription());
-        postProcessors.setParametersJson(processorsDTO.getParametersJson());
+        postProcessors.setJsonData(processorsDTO.getParametersJson());
         int insert = this.baseMapper.insert(postProcessors);
         if (insert != 1) {
             throw new RuntimeException("添加失败");

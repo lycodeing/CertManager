@@ -1,13 +1,13 @@
 package cn.lycodeing.cert.web.service.impl;
 
 import cn.lycodeing.cert.web.domain.Instance;
-import cn.lycodeing.cert.web.domain.PostProcessors;
 import cn.lycodeing.cert.web.domain.Task;
 import cn.lycodeing.cert.web.dto.request.TaskDTO;
 import cn.lycodeing.cert.web.enums.InstanceStatusEnum;
 import cn.lycodeing.cert.web.mapper.TaskMapper;
 import cn.lycodeing.cert.web.service.InstanceService;
 import cn.lycodeing.cert.web.service.TaskService;
+import cn.lycodeing.cert.web.utils.GsonUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -49,12 +49,9 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
         task.setId(taskDTO.getId());
         task.setDomain(taskDTO.getDomain());
         task.setEmail(taskDTO.getEmail());
-        task.setDnsType(taskDTO.getDnsType());
-        task.setAccessKey(taskDTO.getAccessKey());
-        task.setAccessSecret(taskDTO.getAccessSecret());
         task.setCertProvider(taskDTO.getCertProvider());
         task.setApiKey(taskDTO.getApiKey());
-        task.setDomainsList(taskDTO.getDomainsList());
+        task.setDomainsList(GsonUtil.toJson(taskDTO.getDomainsList()));
         return task;
     }
 
@@ -69,39 +66,6 @@ public class TaskServiceImpl extends ServiceImpl<TaskMapper, Task>
         entity.setAddress(sslPath + getPath());
         entity.setActionTime(LocalDateTime.now());
         instanceService.save(entity);
-    }
-
-
-    /**
-     * 创建复合L1实例
-     *
-     * @param task 任务
-     * @return
-     */
-    public Integer saveComplexInstance(Task task) {
-        return 0;
-    }
-
-
-    /**
-     * 创建L1类型的实例
-     *
-     * @param task             任务
-     * @param parentInstanceId 父实例id
-     */
-    public void saveCertInstance(Task task, Integer parentInstanceId) {
-
-    }
-
-
-    /**
-     * 创建证书任务的后置任务实例
-     *
-     * @param postProcessors   后置处理器任务
-     * @param parentInstanceId 父实例id
-     */
-    public void savePostInstance(PostProcessors postProcessors, Integer parentInstanceId) {
-
     }
 
 
